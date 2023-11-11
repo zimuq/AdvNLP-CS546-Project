@@ -78,14 +78,14 @@ class Channel:
     
 
 class EvaluationDataset:
-    def __init__(self, channel_name, videos_list=[]) -> None:
-        self.channel_name = channel_name
+    def __init__(self, channel_list, videos_list=[]) -> None:
+        self.channel_list = channel_list
         self.videos_list = videos_list
 
         self.video_dict = {}
 
-    def getChannelName(self):
-        return self.channel_name
+    def getChannelList(self):
+        return self.channel_list
     
     def getVideosList(self):
         return self.videos_list
