@@ -7,7 +7,7 @@ def transcript_get(url: str):
 
     try:
         srt = YouTubeTranscriptApi.get_transcript(url)
-    except(err):
+    except Exception as err:
         print(err)
         return None
 
