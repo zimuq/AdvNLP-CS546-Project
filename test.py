@@ -4,7 +4,7 @@
 import youtube_transcript_api_get as ytb
 import os
 import openai
-openai.api_key = "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" # set up open ai key
+openai.api_key = "YOUR_API_KEY" # set up open ai key
 
 def api_transcript_to_str(transcript):
     """
