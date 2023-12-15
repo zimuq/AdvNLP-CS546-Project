@@ -1,0 +1,70 @@
+id,channel_name,video_title,phone_brand,phone_model,score,video_link
+1,mkbhd,"OnePlus Open is Awesome - What's Happening with Folding Phones?!
+",OnePlus,OnePlus Open,0,https://www.youtube.com/watch?v=jD9n01Mck0Q
+2,mkbhd,"Google Pixel 8/8 Pro Review: We'll Fix It In Post!
+",Google,Pixel 8,1,https://www.youtube.com/watch?v=BS8x2TicxQ8
+3,mkbhd,"Google Pixel 8/8 Pro Review: We'll Fix It In Post!
+",Google,Pixel 8 Pro,-1,https://www.youtube.com/watch?v=BS8x2TicxQ8
+4,mkbhd,"iPhone 15 Review: Welcome to the Club!
+",Apple,iPhone 15,1,https://www.youtube.com/watch?v=0X0Jm8QValY
+5,mkbhd,"iPhone 15 Pro Review: The Good, The Bad, & The Ugly!
+",Apple,iPhone 15 Pro,-1,https://www.youtube.com/watch?v=cBpGq-vDr2Y
+6,mkbhd,"Samsung Z Fold 5 and Z Flip 5 Impressions: They Settled!
+",Samsung,Z Fold 5,-1,https://www.youtube.com/watch?v=Eo-oFWyxdUo
+7,mkbhd,"Samsung Z Fold 5 and Z Flip 5 Impressions: They Settled!
+",Samsung,Z Flip 5,0,https://www.youtube.com/watch?v=Eo-oFWyxdUo
+8,mkbhd,"Samsung Z Flip 5 Review: I Was Wrong!
+",Samsung,Z Flip 5,1,https://www.youtube.com/watch?v=WuljKartv2U
+9,mkbhd,"This Phone is Nearly Perfect!
+",ASUS,Zenfone 10,1,https://www.youtube.com/watch?v=6aK407STsGA
+10,mkbhd,"Google Pixel Fold Review: Maybe Next Year!
+",Google Pixel,Pixel Fold,0,https://www.youtube.com/watch?v=PhFwDJCEhBg
+11,mkbhd,"Nothing Phone 2 Review: A Real Personality!
+",Nothing Phone,Nothing Phone 2,1,https://www.youtube.com/watch?v=lRUtHtqfCGA
+12,mkbhd,"How Does Sony Keep Doing This?
+",Sony,Xperia 1 V,1,https://www.youtube.com/watch?v=PCp1BmME6QA
+13,tech spurt,"iPhone 15 Pro Max Review | Two Months Later...
+",Apple,iPhone 15 Pro Max,1,https://www.youtube.com/watch?v=iOCAK_QUihE
+14,tech spurt,"Better than iPhone 15 Pro Max, Half the Price! | Xiaomi 13T
+",Xiaomi,13T,1,https://www.youtube.com/watch?v=2ipBP8ThixI
+15,tech spurt,"Google Pixel 8 Review | One Month Later...
+",Google,Pixel 8,0,https://www.youtube.com/watch?v=EHM22fddWb0
+16,tech spurt,"Crazy 'ePaper' Smartphone! | TCL 40 NxtPaper Unboxing
+",TCL,40 NxtPaper,1,https://www.youtube.com/watch?v=BJfcRhh3Acw
+17,tech spurt,"Well Worth The Wait! | Xiaomi Redmi Note 13 Pro Plus Unboxing
+",Redmi,Note 13 Pro Plus,1,https://www.youtube.com/watch?v=9WFGsPSsw1Y
+18,tech spurt,"Pixel 7a Destroyer? | Vivo V29 Unboxing & Full Tour
+",Vivo,V29,1,https://www.youtube.com/watch?v=u_a6-B_DqVA
+19,tech spurt,"Motorola Moto G84 5G | Unboxing, Gaming, Camera & More!
+",Motorola,G84 5G,1,https://www.youtube.com/watch?v=ES47Q0SABZA
+20,tech spurt,"Poco F5 Pro | Unboxing & 1 Week Review
+",Poco,F5 Pro,-1,https://www.youtube.com/watch?v=q4EY-9WteB8
+21,tech spurt,"Vivo X90 Pro Unboxing & Full Tour | Dimensity 9200, Next-Gen Night Camera
+",Vivo,X90 Pro,0,https://www.youtube.com/watch?v=jnmE01_9Dg8
+22,tech spurt,"iPhone 14 Pro Max Re-Review | Nine Months Later...
+",Apple,iPhone 14 Pro Max,1,https://www.youtube.com/watch?v=ebuEiamJkXY
+23,Mrwhosetheboss,"iPhone 15 Pro Review - Better than you think.
+",Apple,iPhone 15 Pro,1,https://www.youtube.com/watch?v=JwAfHEHQKto
+24,Mrwhosetheboss,"The Google Pixel Fold is Weird.
+",Google,Pixel Fold,-1,https://www.youtube.com/watch?v=g_DHKoj7n8U
+25,Mrwhosetheboss,"The Samsung S23 Ultra is secretly INCREDIBLE
+",Samsung,S23 Ultra,1,https://www.youtube.com/watch?v=zz70o2Ia4X0
+26,Mrwhosetheboss,"Xiaomi 12S Ultra Review - This is Game-Changing.
+",Xiaomi,12S Ultra,1,https://www.youtube.com/watch?v=ohltpJStiKc
+27,Mrwhosetheboss,"Zenfone 8 - The most boring INCREDIBLE phone ever.
+",Asus,Zenfone 8,-1,https://www.youtube.com/watch?v=XfpMPZTyNQI
+28,Mrwhosetheboss,"OnePlus 7 Pro in 2020 - Wow.
+",OnePlus,OnePlus 7 Pro,1,https://www.youtube.com/watch?v=aAkridWMmyU
+29,Mrwhosetheboss,"Cheap vs Expensive Phones - How close ARE they!?
+",Redmi,Note 13 Pro Plus,1,https://www.youtube.com/watch?v=9tcyWI45w7s&t=140s
+30,Mrwhosetheboss,"Cheap vs Expensive Phones - How close ARE they!?
+",Samsung,S23 Ultra,0,https://www.youtube.com/watch?v=9tcyWI45w7s&t=140s
+31,Mrwhosetheboss,"I tried switching from iPhone to Samsung
+",Apple,iPhone 14 Pro Max,0,https://www.youtube.com/watch?v=KLWdtl5S51g
+32,Mrwhosetheboss,"I tried switching from iPhone to Samsung
+",Samsung,Z Flip 5,1,https://www.youtube.com/watch?v=KLWdtl5S51g
+33,Mrwhosetheboss,"Google Pixel 7 & 7 Pro Review - Ridiculous.
+",Google,Pixel 7,1,https://www.youtube.com/watch?v=gPZnKfTzv5s
+34,Mrwhosetheboss,"Google Pixel 7 & 7 Pro Review - Ridiculous.
+",Google,Pixel 7 Pro,1,https://www.youtube.com/watch?v=gPZnKfTzv5s
+,,,,,,
