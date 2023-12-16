@@ -6,7 +6,8 @@ import os
 import csv
 import openai
 from openai import OpenAI
-openai_api_key = "YOUR_API_KEY"
+import evaluation as eval
+openai_api_key = "Your_API_KEY"
 
 def api_transcript_to_str(transcript):
     """
@@ -20,24 +21,7 @@ def api_transcript_to_str(transcript):
 
     return output_str
 
-def testOpenaiAPICall(prompt):
-    if len(prompt) > 100000:
-        print("Probably exceed the maximum tokens limit, please check your prompt!")
-        return "See Above Warning"
-    try:
-        response = openai.Completion.create(
-            engine="text-davinci-003",
-            prompt=prompt,
-            max_tokens=100,
-            temperature=0
-        )
-    except Exception as err:
-        print(f"Error: function testOpenaiAPICall() encounter API call error {err}")
-        return "See Above Exception"
-    return response
-
 def generateCOT(givenCaption):
-
     prompt_set = {
         "fact_1": 
                 """ 
@@ -102,9 +86,9 @@ def readManuallyLabels(csv_file_path):
 def openaiAPICall(prompt: str = None, caption: str = None):
     if prompt is None:
         prompt = """Given the following video caption, please anaylze the stance of the smartphone reviewer towards any mentioned 
-                    smartphone brands/models in this video. For example, your output should be in the format: iPhone 13 Pro: 1 (positive), 
-                    Samsung: 0 (neutral), Google Pixel 3: -1 (negative), OnePlus 8: 0.5/-0.5 (half positive/half negative, in these cases,
-                    you can optionally provide the justifications)
+                    smartphone brands/models in this video. For example, your output should be in the format: iPhone 13 Pro: 1, 
+                    Samsung: 0, Google Pixel 3: -1). The 1 means positive, the 0 means neutral, and the -1 means negative. Besides, when you find some smartphones mentioned in the video that you cannot tell the
+                    reviewer's stance, you can just put 0 on it. Also, I don't want any text except the smartphone brands/model. You should strictly follow the format. 
                 """
     model_name = "gpt-3.5-turbo"
     if len(caption + prompt) > 20000:
@@ -159,11 +143,13 @@ def evaluateByLLM(caption):
         return "See Above Exception"
     return response
 
-def evaluateDataset(csv_file_name, channel_name):
-    rs = readManuallyLabels(csv_file_name) # rs is a dictionary
+def evaluateDataset(rs, channel_name):
+    # rs = readManuallyLabels(csv_file) # rs is a dictionary
     videos_dict = rs[channel_name]
     videos_count = 0
     result_dict = None
+    y_real = []
+    y_pred = []
 
     for url, scores in videos_dict.items():
         print(f"Processing video {url}, please wait...")
@@ -177,62 +163,36 @@ def evaluateDataset(csv_file_name, channel_name):
         # Call OpenAI API to do stance analysis
         response = openaiAPICall(caption=caption)
 
-        dataset_predict = "dataset_predict:\n" + response
-        dataset_correct = "dataset_correct:\n" + str(scores)
-
-        # print(dataset_predict + dataset_correct)
-
-        # Call LLM to evaluate
-        results = evaluateByLLM(dataset_predict + dataset_correct)
-
-        try:
-            res_dict = eval(results)
-            if result_dict is None:
-                result_dict = res_dict
-            else:
-                for k, v in res_dict.items():
-                    result_dict[k] += v
-            videos_count +=1
-        except Exception as err:
-            print(err)
-            # return url, results
-        print(f"Finish processing video... result = {result_dict}.")
-        
-    return videos_count, result_dict
+        # Preprocess the output to evaluate
+        y_real_temp = []
+        y_pred_temp = []
+        y_real_temp, y_pred_temp = eval.result_preprocess(response, scores)
+        if len(y_real_temp) != 0 and len(y_pred_temp) != 0:
+            y_pred += (y_pred_temp)
+            y_real += (y_real_temp)
+    # Evaluate the result
+    print(y_real, y_pred)
+    precision, recall, f1, mse = eval.calculate_weighted_metrics(y_real, y_pred)
+    print(f"Name: {channel_name}, Precision: {precision}, Recall: {recall}, F1: {f1}, MSE: {mse}")
+    return y_real, y_pred
 
 def main():
-    # url = 'jD9n01Mck0Q'
-    # url = 'https://www.youtube.com/watch?v=jD9n01Mck0Q'
-    # res = ytb.transcript_get(url)
-    # if not res:
-    #     print('[See Print Error for Details]')
-    # # print(type(res))
-    # print(len(res))
-    # str_caption = api_transcript_to_str(res)
-    # print(str_caption[:30])
-
-    # re = openaiAPICall(str_caption)
-    # print(re)
-
+    y_real = []
+    y_pred = []
+    y_real_one_reviewer = []
+    y_pred_one_reviewer = []
+    channel_list = ['mkbhd', 'tech spurt', 'Mrwhosetheboss']
     csv_file = 'std_manual_label.csv'
-    count, results = evaluateDataset(csv_file, channel_name='mkbhd')
-    print(count, results)
-    for k, v in results.items():
-        results[k] = v / count
-    print(count, results)
+    rs = readManuallyLabels(csv_file) # rs is a dictionary
+    for channel_name in channel_list:
+        y_real_one_reviewer, y_pred_one_reviewer = evaluateDataset(rs, channel_name)
+        y_real += y_real_one_reviewer
+        y_pred += y_pred_one_reviewer
+    
+    precision, recall, f1, mse = eval.calculate_weighted_metrics(y_real, y_pred)
+    print(f"Precision: {precision}, Recall: {recall}, F1: {f1}, MSE: {mse}")
+
 
 if __name__ == '__main__':
-    # prompt = """
-    # Can you do the sentiment analysis if I provide you with the caption from a smartphone review video?
-    # """
-    
-    # csv_file = 'manual_label.csv'
-    # rs = readManuallyLabels(csv_file)
-    # print(rs)
 
     main()
-    # count = 7
-    # results = {'precision': 3.571428571428571, 'recall': 3.821428571428571, 'F1 score': 3.388095238095238, 'MSE': 5.041666666666667}
-    # for k, v in results.items():
-    #     results[k] = v / count
-    # print(count, results)
