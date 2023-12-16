@@ -6,7 +6,7 @@ import os
 import csv
 import openai
 from openai import OpenAI
-openai_api_key = "Your_API_KEY"
+openai_api_key = "YOUR_API_KEY"
 
 def api_transcript_to_str(transcript):
     """
@@ -66,7 +66,7 @@ def generateCOT(givenCaption):
         3) Both 1) and 2) told us Oneplus Open (a fold phone) is as light as a regular phone, so we can only know the reviewer is 
         positive towards Oneplus Open without showing any opinion towards iPhone 14 Pro Max. 
     """
-    final_cot = "Let me give you a chain-of-thoughts: " + prompt1 + prompt2 + prompt3
+    final_cot = givenCaption + ". " + "Let me give you a chain-of-thoughts: " + prompt1 + prompt2 + prompt3
     return final_cot
 
 def readManuallyLabels(csv_file_path):
@@ -107,7 +107,7 @@ def openaiAPICall(prompt: str = None, caption: str = None):
                     you can optionally provide the justifications)
                 """
     model_name = "gpt-3.5-turbo"
-    if len(caption + prompt) > 6000:
+    if len(caption + prompt) > 20000:
         print("Probably exceed the maximum tokens limit, please check your input!")
         model_name = "gpt-3.5-turbo-16k"
         # return "See Above Warning"
