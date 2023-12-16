@@ -7,6 +7,7 @@ import csv
 import openai
 from openai import OpenAI
 import evaluation as eval
+from BrandDetector import extract_brand_name, get_phone_brand_by_LLM
 openai_api_key = "Your_API_KEY"
 
 def api_transcript_to_str(transcript):
@@ -162,6 +163,18 @@ def evaluateDataset(rs, channel_name):
 
         # Call OpenAI API to do stance analysis
         response = openaiAPICall(caption=caption)
+
+        # Extract models via BrandDetector
+        potential_models = extract_brand_name(response)
+        models = [get_phone_brand_by_LLM(model) for model in potential_models]
+        format_prompt = """ For example, your output should be in the format: iPhone 13 Pro: 1, 
+                            Samsung: 0, Google Pixel 3: -1). The 1 means positive, the 0 means neutral, and the -1 means negative. Besides, when you find some smartphones mentioned in the video that you cannot tell the
+                            reviewer's stance, you can just put 0 on it. Also, I don't want any text except the smartphone brands/model. You should strictly follow the format.
+                        """
+        new_prompt = "You forgot the following brands/models, please reevaluate them again: " + str(models) + ". " + format_prompt
+
+        # Integrate BrandDetector with LLM
+        response = openaiAPICall(prompt=new_prompt, caption=caption)
 
         # Preprocess the output to evaluate
         y_real_temp = []
